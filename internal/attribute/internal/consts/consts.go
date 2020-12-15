@@ -1,0 +1,18 @@
+package consts
+
+import "time"
+
+var TimeBaseUnix = time.Date(2019, 9, 1, 0, 0, 0, 0, time.Now().Location()).Unix()
+
+const (
+	COROUTINE_EVENT = 1 + iota
+	SESSION_ON_ACCEPT_EVENT
+	SESSION_ON_CLOSE_EVENT
+	NET_MSG_EVENT
+	TIMER_EVENT
+	GAME_DATA_RELOAD_EVENT
+	CALLATER_EVT
+	ClOSE_EVQ_EVT
+	SNET_ON_DISCONNECT
+	SNET_ON_RECONNECT
+)

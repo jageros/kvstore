@@ -1,0 +1,7 @@
+dbAddr = "127.0.0.1:27017"
+dbName = "strsvc"
+#dbUser = ""
+#dbPassword = ""
+listenAddr = ":8080"
+ginModel = "debug"
+#ginModel = "release"
