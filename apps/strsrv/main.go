@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"log"
 	"math/rand"
-	"strsvc/app/service"
+	"strsvc/apps/strsrv/service"
 	"strsvc/internal/attribute"
 	"strsvc/internal/conf"
 	"time"

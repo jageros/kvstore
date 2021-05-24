@@ -1,10 +1,10 @@
 #! /bin/sh
 
 mkdir -p logs
-touch logs/app.log
+touch logs/strsrv.log
 mkdir -p pids
 
-nohup ./builder/app --id 1 2 >> logs/app.log & echo $! > pids/app.pid
+nohup ./builder/strsrv --id 1 2 >> logs/strsrv.log & echo $! > pids/strsrv.pid
 
 sleep 1s
 ps aux|grep ./builder | grep -v grep

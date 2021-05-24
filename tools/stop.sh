@@ -8,7 +8,7 @@ else
 fi
 
 echo "kill $single all"
-for pid in `cat pids/app.pid`; do kill ${single} ${pid}; done
+for pid in `cat pids/strsrv.pid`; do kill ${single} ${pid}; done
 
 sleep 1s
 ps aux|grep ./builder | grep -v grep

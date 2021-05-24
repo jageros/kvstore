@@ -2,7 +2,6 @@ package service
 
 import (
 	"github.com/gin-gonic/gin"
-	"log"
 	"net/http"
 	"strsvc/internal/attribute"
 	"strsvc/internal/utils"
@@ -29,7 +28,6 @@ func handle_StrGet(c *gin.Context) {
 }
 
 func handle_StrGetAll(c *gin.Context) {
-	log.Printf("222222")
 	attr := attribute.NewAttrMgr("data", DBID)
 	err := attr.Load(true)
 	if err != nil {
@@ -46,7 +44,6 @@ func handle_StrGetAll(c *gin.Context) {
 }
 
 func handle_StrSave(c *gin.Context) {
-	log.Printf("3333333")
 	args := map[string]string{}
 	err := c.BindJSON(&args)
 	if err != nil {
