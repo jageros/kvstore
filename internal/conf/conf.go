@@ -1,30 +1,33 @@
 package conf
 
 import (
-	"github.com/BurntSushi/toml"
+	"gopkg.in/yaml.v3"
+	"io/ioutil"
 	"log"
 )
 
-var CFG *Config
-
 type Config struct {
-	DBAddr     string `toml:"dbAddr"`
-	DBName     string `toml:"dbName"`
-	DBUser     string `toml:"dbUser"`
-	DBPassword string `toml:"dbPassword"`
-	GinModel   string `toml:"ginModel"`
-	ListenAddr string `toml:"listenAddr"`
+	Model      string `yaml:"model"`
+	ListenAddr string `yaml:"listen_addr"`
+	Mongo      struct {
+		Addr     string `yaml:"addr"`
+		DB       string `yaml:"db"`
+		User     string `yaml:"user"`
+		Password string `yaml:"password"`
+	} `yaml:"mongo"`
 }
 
-func loadConfig(configPath string) {
-	var config *Config
-	if _, err := toml.DecodeFile(configPath, &config); err != nil {
-		log.Panic(err)
+func Parse(path string) *Config {
+	yamlFile, err := ioutil.ReadFile(path)
+	if err != nil {
+		log.Fatalf("Read Config yaml file err: %v", err)
 	}
-	CFG = config
-}
 
-// ======== init ==============
-func Initialize(configPath string) {
-	loadConfig(configPath)
+	conf := new(Config)
+	err = yaml.Unmarshal(yamlFile, &conf)
+
+	if err != nil {
+		log.Fatalf("Read Config yaml Unmarshal err: %v", err)
+	}
+	return conf
 }

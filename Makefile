@@ -1,17 +1,27 @@
-#export GOPATH=/home/server/goprojects3
+# 说明：
+# 可加参数指定编译平台，plat=linux
+# 可指定编译其中某些程序，详情见all：列表
 
-plat ?= linux
+#export GOPATH=$(shell pwd)
+
+plat ?= darwin
 plats = linux darwin
 
-all: strsrv
+arch ?= amd64
+archs = amd64 arm arm64
 
-define build_server
+all: kvs
+
+define build_app
         @echo 'building $(1) ...'
-        @GOOS=$(2) GOARCH=amd64 go build -o builder/$(1) ./apps/$(1)
+        @GOOS=$(2) GOARCH=$(3) go build -o builder/$(1) ./cmd/$(1)
         @echo 'build $(1) done'
 endef
 
-strsrv:
-	$(call build_server,strsrv,$(plat))
+kvs:
+	$(call build_app,kvs,$(plat),$(arch))
 
-.PHONY: strsrv
+.PHONY: kvs
+
+clean:
+	rm -f builder/*

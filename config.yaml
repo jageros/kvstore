@@ -1,0 +1,7 @@
+listen_addr: ":8060"
+model: "debug" # debug/release
+mongo:
+  addr: "127.0.0.1:27017"
+  db: "kv-store"
+  #user: ""
+  #password: ""

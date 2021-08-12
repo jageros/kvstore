@@ -1,7 +1,0 @@
-dbAddr = "127.0.0.1:27017"
-dbName = "strsvc"
-#dbUser = ""
-#dbPassword = ""
-listenAddr = ":8060"
-ginModel = "debug"
-#ginModel = "release"

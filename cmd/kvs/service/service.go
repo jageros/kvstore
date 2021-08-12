@@ -2,14 +2,14 @@ package service
 
 import (
 	"github.com/gin-gonic/gin"
+	"github.com/jageros/attribute"
 	"net/http"
-	"strsvc/internal/attribute"
 	"strsvc/internal/utils"
 )
 
 const DBID = "str_data"
 
-func handle_StrGet(c *gin.Context) {
+func getValue(c *gin.Context) {
 	key := utils.DecodeUrlVal(c, "key")
 	if key == "" {
 		c.JSON(http.StatusOK, gin.H{"code": -1, "msg": "参数错误！"})
@@ -27,7 +27,7 @@ func handle_StrGet(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"code": 200, "msg": "successful", "data": result})
 }
 
-func handle_StrGetAll(c *gin.Context) {
+func getValues(c *gin.Context) {
 	attr := attribute.NewAttrMgr("data", DBID)
 	err := attr.Load(true)
 	if err != nil {
@@ -43,8 +43,8 @@ func handle_StrGetAll(c *gin.Context) {
 	c.JSON(http.StatusOK, gin.H{"code": 200, "msg": "successful", "data": result})
 }
 
-func handle_StrSave(c *gin.Context) {
-	args := map[string]string{}
+func saveValues(c *gin.Context) {
+	args := map[string]interface{}{}
 	err := c.BindJSON(&args)
 	if err != nil {
 		c.JSON(http.StatusOK, gin.H{"code": -1, "msg": err.Error()})
@@ -53,7 +53,7 @@ func handle_StrSave(c *gin.Context) {
 	attr := attribute.NewAttrMgr("data", DBID)
 	attr.Load(true)
 	for key, val := range args {
-		attr.SetStr(key, val)
+		attr.Set(key, val)
 	}
 	err = attr.Save(false)
 	if err != nil {
@@ -64,7 +64,7 @@ func handle_StrSave(c *gin.Context) {
 }
 
 func RegisterHandle(r *gin.RouterGroup) {
-	r.GET("/str_get", handle_StrGet)
-	r.GET("/str_get_all", handle_StrGetAll)
-	r.POST("/str_save", handle_StrSave)
+	r.GET("/value", getValue)
+	r.GET("/values", getValues)
+	r.POST("/values", saveValues)
 }
