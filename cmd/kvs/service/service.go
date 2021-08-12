@@ -3,8 +3,8 @@ package service
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/jageros/attribute"
+	"kvstore/internal/utils"
 	"net/http"
-	"strsvc/internal/utils"
 )
 
 const DBID = "str_data"

@@ -7,8 +7,8 @@ import (
 	"net/http"
 	"time"
 
-	"strsvc/cmd/kvs/service"
-	"strsvc/internal/conf"
+	"kvstore/cmd/kvs/service"
+	"kvstore/internal/conf"
 
 	//"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
