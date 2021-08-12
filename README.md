@@ -2,7 +2,7 @@
 ## 环境要求
 + Linux
 + MongoDB
-+ go v1.15+
++ go v1.16+
 
 ## 安装
 + make
