@@ -7,6 +7,6 @@
 ## 安装
 + make
 + 启动MongoDB
-+ 配置config.toml
++ 配置config.yaml
 + 起服： sh tools/start.sh
 + 停服： sh tools/stop.sh
